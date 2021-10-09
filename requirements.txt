@@ -1,7 +1,7 @@
-tensorflow 
 fastapi
-matplotlib 
-uvicorn 
+matplotlib
+tensorflow
+uvicorn
 uvloop 
 httptools
-gunicorn=19.9.0
+gunicorn==19.0.0
