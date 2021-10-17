@@ -4,7 +4,7 @@ import uvicorn
 import numpy as np
 from io import BytesIO
 from PIL import Image
-import tensorflow as tf
+import keras
 
 app = FastAPI()
 
@@ -20,7 +20,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-MODEL = tf.keras.models.load_model("./4")
+MODEL = keras.models.load_model("./4")
 
 CLASS_NAMES = ["Early Blight", "Late Blight","Septoria leaf Spot","Healthy"]
 
