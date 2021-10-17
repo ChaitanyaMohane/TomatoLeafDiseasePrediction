@@ -5,3 +5,4 @@ uvicorn
 uvloop 
 httptools
 gunicorn==19.0.0
+tensorflow_gpu
