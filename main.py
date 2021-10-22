@@ -16,7 +16,7 @@ MODEL = tf.keras.models.load_model('tomato')
 
 @app.get("/")
 def home():
-    return {"message":"Hello TutLinks.com"}
+    return {"message":"Hello there, We are group 08"}
 
 
 @app.get("/ping")
