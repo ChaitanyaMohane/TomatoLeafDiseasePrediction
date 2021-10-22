@@ -1,7 +1,6 @@
-fastapi
-matplotlib
-keras
-uvicorn
-uvloop 
-httptools
-gunicorn==19.0.0
+tensorflow-cpu
+numpy==1.19.2
+fastapi==0.70.0
+Pillow==8.4.0
+uvicorn==0.15.0
+python-multipart

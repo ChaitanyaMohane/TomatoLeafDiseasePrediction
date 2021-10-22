@@ -4,25 +4,20 @@ import uvicorn
 import numpy as np
 from io import BytesIO
 from PIL import Image
-import keras
+import tensorflow as tf
+
 
 app = FastAPI()
 
-origins = [
-    "http://localhost",
-    "http://localhost:3000",
-]
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=origins,
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+#domain where this   api is hosted for example : localhost:5000/docs to see swagger documentation automagically generated.
 
-MODEL = keras.models.load_model("./4")
+MODEL = tf.keras.models.load_model('tomato')
 
-CLASS_NAMES = ["Early Blight", "Late Blight","Septoria leaf Spot","Healthy"]
+
+@app.get("/")
+def home():
+    return {"message":"Hello TutLinks.com"}
+
 
 @app.get("/ping")
 async def ping():
@@ -36,6 +31,10 @@ def read_file_as_image(data) -> np.ndarray:
 async def predict(
     file: UploadFile = File(...)
 ):
+    
+
+    CLASS_NAMES = ["Early Blight", "Late Blight","Septoria leaf Spot","Healthy"]
+
     image = read_file_as_image(await file.read())
     img_batch = np.expand_dims(image, 0)
     
@@ -47,6 +46,3 @@ async def predict(
         'class': predicted_class,
         'confidence': float(confidence)
     }
-
-if __name__ == "__main__":
-    uvicorn.run(app, host='localhost', port=8000)
